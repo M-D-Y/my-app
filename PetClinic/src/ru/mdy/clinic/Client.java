@@ -13,14 +13,17 @@ import ru.mdy.animals.Animal;
  * @since 4 апр. 2016 г.
  */
 public class Client {
-	private String name;
+	private final int clientID;
+	private  String name;
 	private List<Animal> animals;
 
-	public Client(final String name) {
+	public Client(final int clientID, final String name) {
+		this.clientID = clientID;
 		this.name = name;
 	}
 
-	public Client(final String name, Animal[] animals) {
+	public Client(final int clientID, final String name, Animal[] animals) {
+		this.clientID = clientID;
 		this.name = name;
 		if (animals != null && animals.length > 0)
 			for (Animal a : animals) {
@@ -36,11 +39,11 @@ public class Client {
 	}
 
 	/**
-	 * @param name
-	 *            the name to set
+	 * @param newName
+	 *            set the new name to client
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void rename(String newName) {
+		this.name = newName;
 	}
 
 	/**
@@ -67,5 +70,12 @@ public class Client {
 	public void addAnimal(Animal animal) {
 		this.animals.add(animal);
 		animal.setOwner(this);
+	}
+
+	/**
+	 * @return the clientID
+	 */
+	public int getClientID() {
+		return clientID;
 	}
 }
