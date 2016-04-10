@@ -1,5 +1,5 @@
 /**
- *  Cat implementaion
+ * 
  */
 package ru.mdy.animals;
 
@@ -7,32 +7,34 @@ import ru.mdy.clinic.Client;
 
 /**
  * @author admin
- * 
- *         Cat realization
- * @since 4 апр. 2016 г.
+ *
+ *
  */
-public class Cat implements Animal {
+public class CatDog implements Animal {
 
 	private String name;
 	private Client owner;
-
-	/**
-	 * 
-	 * @param name
-	 *            the name of cat
-	 */
-	public Cat(final String name) {
-		setName(name);
-	}
+	private Cat cat;
+	private Dog dog;
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see ru.mdy.animals.Animal#GetName()
+	 * @see ru.mdy.animals.Animal#getName()
 	 */
 	@Override
 	public String getName() {
-		return this.name;
+
+		return name;
+	}
+
+	/**
+	 * @param name
+	 */
+	public CatDog(String name) {
+		setName(name);
+		cat = new Cat(name);
+		dog = new Dog(name);
 	}
 
 	/*
@@ -56,7 +58,7 @@ public class Cat implements Animal {
 	 */
 	@Override
 	public String makeSound() {
-		return AnimalSounds.Cat.getSound();
+		return cat.makeSound() + dog.makeSound();
 	}
 
 	/*
@@ -66,37 +68,17 @@ public class Cat implements Animal {
 	 */
 	@Override
 	public boolean isPredator() {
-		return true;
+		return cat.isPredator() && dog.isPredator();
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see ru.mdy.animals.Animal#getCient()
+	 * @see ru.mdy.animals.Animal#getOwner()
 	 */
 	@Override
 	public Client getOwner() {
-		return owner;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see ru.mdy.animals.Animal#isOrphanAnimal()
-	 */
-	public boolean isOrphanAnimal() {
-		return owner == null;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see ru.mdy.animals.Animal#setOwner(ru.mdy.clinic.Client)
-	 */
-	@Override
-	public void setOwner(Client client) {
-		this.owner = client;
-
+		return this.owner;
 	}
 
 	/*
@@ -107,6 +89,26 @@ public class Cat implements Animal {
 	@Override
 	public String getOwnerInfo() {
 		return isOrphanAnimal() ? "Unknown" : owner.getInfo();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see ru.mdy.animals.Animal#setOwner(ru.mdy.clinic.Client)
+	 */
+	@Override
+	public void setOwner(Client client) {
+		this.owner = client;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see ru.mdy.animals.Animal#isOrphanAnimal()
+	 */
+	@Override
+	public boolean isOrphanAnimal() {
+		return owner == null;
 	}
 
 }

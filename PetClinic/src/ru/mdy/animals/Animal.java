@@ -13,19 +13,22 @@ import ru.mdy.clinic.Client;
  *
  * @since 4 апр. 2016 г.
  */
+
+
+
 public interface Animal {
 	/**
 	 * 
 	 * @return animal name
 	 */
-	public String GetName();
+	public String getName();
 
 	/**
 	 * 
 	 * @param name
 	 *            of animal
 	 */
-	public void SetName(String name);
+	public void setName(String newName);
 
 	/**
 	 * 
@@ -47,7 +50,13 @@ public interface Animal {
 
 	/**
 	 * 
-	 * @return 
+	 * @return Owner name for current animal
+	 */
+	public String getOwnerInfo();
+
+	/**
+	 * 
+	 * @return
 	 * @return Owner for current animal
 	 */
 	public void setOwner(Client client);

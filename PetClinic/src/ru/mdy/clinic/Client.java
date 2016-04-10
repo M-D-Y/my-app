@@ -4,31 +4,29 @@
  */
 package ru.mdy.clinic;
 
-import java.util.List;
-
-import ru.mdy.animals.Animal;
-
 /**
  * @author admin Pet clinic client's realization
  * @since 4 апр. 2016 г.
  */
 public class Client {
-	private final int clientID;
-	private  String name;
-	private List<Animal> animals;
+	private String name;
+	private String address;
 
-	public Client(final int clientID, final String name) {
-		this.clientID = clientID;
-		this.name = name;
+	public Client(final String name) {
+		super();
+		setName(name);
+		setAddress("Unknown");
 	}
 
-	public Client(final int clientID, final String name, Animal[] animals) {
-		this.clientID = clientID;
-		this.name = name;
-		if (animals != null && animals.length > 0)
-			for (Animal a : animals) {
-				this.addAnimal(a);
-			}
+	public Client(final String name, final String address) {
+		setName(name);
+		setAddress(address);
+	}
+
+	public boolean equals(Client client) {
+		boolean result = this.getName().equalsIgnoreCase(client.getName())
+				&& this.getAddress().equalsIgnoreCase(client.getAddress());
+		return result;
 	}
 
 	/**
@@ -39,43 +37,28 @@ public class Client {
 	}
 
 	/**
-	 * @param newName
-	 *            set the new name to client
+	 * @param name
+	 *            set the name to client
 	 */
-	public void rename(String newName) {
-		this.name = newName;
+	public void setName(final String name) {
+		if (name != null && !name.isEmpty())
+			this.name = name;
+		else
+			throw new IllegalArgumentException("Argument is empty or null: " + name);
 	}
 
-	/**
-	 * @return the animals
-	 */
-	public List<Animal> getAnimals() {
-		return animals;
+	public String getAddress() {
+		return address;
 	}
 
-	/**
-	 * @param animals
-	 *            the animals to set
-	 */
-	public void setAnimals(List<Animal> animals) {
-		this.animals = animals;
+	public void setAddress(final String address) {
+		if (address != null && !address.isEmpty())
+			this.address = address;
+		else
+			throw new IllegalArgumentException("Argument is empty or null: " + address);
 	}
 
-	/**
-	 * 
-	 * @param animal
-	 *            for adding new animal
-	 */
-
-	public void addAnimal(Animal animal) {
-		this.animals.add(animal);
-		animal.setOwner(this);
-	}
-
-	/**
-	 * @return the clientID
-	 */
-	public int getClientID() {
-		return clientID;
+	public String getInfo() {
+		return "Name = " + getName() + ", address = " + getAddress();
 	}
 }

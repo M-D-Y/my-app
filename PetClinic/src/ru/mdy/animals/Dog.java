@@ -22,7 +22,7 @@ public class Dog implements Animal {
 	 *            the name of cat
 	 */
 	public Dog(final String name) {
-		this.name = (name.isEmpty()) ? "Unknown" : name;
+		setName(name);
 	}
 
 	/*
@@ -31,18 +31,22 @@ public class Dog implements Animal {
 	 * @see ru.mdy.animals.Animal#GetName()
 	 */
 	@Override
-	public String GetName() {
+	public String getName() {
 		return this.name;
 	}
 
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see ru.mdy.animals.Animal#SetName(java.lang.String)
+	 * @see ru.mdy.animals.Animal#setName(java.lang.String)
 	 */
 	@Override
-	public void SetName(final String name) {
-		this.name = (name.isEmpty()) ? "Unknown" : name;
+	public void setName(final String name) {
+		if (name != null && !name.isEmpty())
+			this.name = name;
+		else
+			this.name = "Unknown"; 
+			//throw new IllegalArgumentException("Argument is empty or null: " + name);
 	}
 
 	/*
@@ -52,7 +56,7 @@ public class Dog implements Animal {
 	 */
 	@Override
 	public String makeSound() {
-		return "Gav, gav";
+		return AnimalSounds.Dog.getSound();
 	}
 
 	/*
@@ -70,7 +74,6 @@ public class Dog implements Animal {
 	 */
 	@Override
 	public Client getOwner() {
-		// TODO Auto-generated method stub
 		return owner;
 	}
 	
@@ -88,5 +91,13 @@ public class Dog implements Animal {
 	public void setOwner(Client client) {
 		this.owner = client;
 		
+	}
+
+	/* (non-Javadoc)
+	 * @see ru.mdy.animals.Animal#getOwnerInfo()
+	 */
+	@Override
+	public String getOwnerInfo() {
+		return isOrphanAnimal() ? "Unknown" : owner.getInfo();
 	}
 }
