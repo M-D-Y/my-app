@@ -22,16 +22,20 @@ public class AnimalTest {
 			IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		Class<?>[] animals = { Cat.class, Dog.class, Cow.class, CatDog.class };
 		for (Class<?> clazz : animals) {
+			
 			Object o = Class.forName(clazz.getName()).getConstructor(String.class).newInstance(clazz.getName());
 			assertNotNull(o);
 			assertEquals(o.getClass(), clazz);
+			
 			// checking name passed by constructor
 			Animal animalObject = (Animal) o;
 			assertEquals(animalObject.getName(), clazz.getName());
+			
 			// checking rename method
 			String newName = clazz.getName() + " - renamed!";
 			animalObject.setName(newName);
 			assertEquals(animalObject.getName(), newName);
+			
 			// checking to set the owner
 			Client client = new Client(getClass().getName());
 			animalObject.setOwner(client);

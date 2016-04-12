@@ -17,6 +17,7 @@ import ru.mdy.clinic.Client;
 
 
 public interface Animal {
+	
 	/**
 	 * 
 	 * @return animal name
@@ -40,7 +41,9 @@ public interface Animal {
 	 * 
 	 * @return true when animal is predator
 	 */
-	public boolean isPredator();
+	default public boolean isPredator(){
+		return true;
+	};
 
 	/**
 	 * 
@@ -65,6 +68,8 @@ public interface Animal {
 	 * 
 	 * @return true if animal has owner
 	 */
-	public boolean isOrphanAnimal();
+	default public boolean isOrphanAnimal() {
+		return true;
+	}
 
 }

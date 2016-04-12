@@ -46,6 +46,7 @@ public class ClinicTest {
 		clinic.addAnimal(client, new Dog("Bobby"));
 		client = new Client("Martin", "Moscow");
 		clinic.addClient(client);
+		
 		// check find clients by name
 		assertEquals(clinic.findClientsByName("Jhon").size(), 0);
 		assertEquals(clinic.findClientsByName("Martin").size(), 2);
