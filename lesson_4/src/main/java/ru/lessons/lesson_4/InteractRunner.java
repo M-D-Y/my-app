@@ -1,7 +1,5 @@
 package ru.lessons.lesson_4;
 
-import ru.lessons.lesson_8.UserException;
-
 import java.util.Scanner;
 
 /**
@@ -19,8 +17,12 @@ public class InteractRunner {
 				String first = reader.next();
 				System.out.println("Enter second arg : ");
 				String second = reader.next();
+
 				try {
 					calc.div(Integer.valueOf(first), Integer.valueOf(second));
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				} catch (UserException e) {
 					System.out.println(e.getMessage());
 					System.out.println("Please enter two args.");

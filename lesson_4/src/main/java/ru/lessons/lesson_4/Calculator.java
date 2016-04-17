@@ -1,7 +1,5 @@
 package ru.lessons.lesson_4;
 
-import ru.lessons.lesson_8.UserException;
-
 /**
  * Класс реализует калькулятор.
  */
