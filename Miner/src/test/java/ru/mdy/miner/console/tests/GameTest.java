@@ -1,7 +1,7 @@
 /**
  * TODO: comments
  */
-package ru.mdy.miner.tests;
+package ru.mdy.miner.console.tests;
 
 import org.junit.Test;
 
@@ -19,7 +19,7 @@ import ru.mdy.miner.logic.UserActionImpl;
  *
  * @since 17 апр. 2016 г.
  */
-public class SimpleGameTest {
+public class GameTest {
 	final UserActionImpl testAction = new UserActionImpl(new ConsoleField(), new CellsGenerator() {
 		public Cell[][] generate() {
 			return new Cell[][] { { new ConsoleCell(false), new ConsoleCell(true), new ConsoleCell(false) },
