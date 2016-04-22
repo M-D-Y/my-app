@@ -5,7 +5,7 @@
 </head>
 <body>
 MyFirstWebProject. <br>
-Статья на <a href=""http://devcolibri.com/1043>http://devcolibri.com/1043</a>
+Статья на <a href="http://devcolibri.com/1043">http://devcolibri.com/1043</a>
 <br>
 Request:
 
