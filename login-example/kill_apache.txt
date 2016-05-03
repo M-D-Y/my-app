@@ -1,0 +1,2 @@
+netstat -nao | find /i "8080"
+taskkill /pid 4472 /f

@@ -1,0 +1,2 @@
+rem initdb.exe -D C:\Program Files\PostgresPro\9.5\data\ --locale=Russian_Russia --encoding=UTF8
+initdb.exe --encoding=UTF-8 --locale=Pussian_Russia.UTF-8 --pgdata="C:\Program Files\PostgresPro\9.5\data\" --username=postgres
