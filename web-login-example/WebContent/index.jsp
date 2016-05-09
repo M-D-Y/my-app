@@ -9,7 +9,6 @@ http-equiv="refresh" content="5; URL=login.jsp">
 You will be redirected to login page automatically in 5 seconds.
 <a href="login.jsp">Or your can do it manually...</a>
 
-<a  href>
 <!--  
 < %
  request.getRequestDispatcher("login.jsp").forward(request, response); 

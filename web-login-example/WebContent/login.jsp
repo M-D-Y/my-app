@@ -21,7 +21,7 @@
 </c:if>
 
 	<form action="LoginServlet">
-<jsp:getProperty name="students" property="firstName"/>
+
 
 		Please enter your username <input type="text" name="un" value="login-example"/><br>
 

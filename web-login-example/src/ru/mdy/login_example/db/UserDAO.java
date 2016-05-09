@@ -18,17 +18,18 @@ public class UserDAO {
 
 		String searchQuery = "select * from login_example.users where username='" + username + "' AND password='" + password + "'";
 
-		// "System.out.println" prints in the console; Normally used to trace
-		// the process
-		System.out.println("Your user name is " + username);
-		System.out.println("Your password is " + password);
-		System.out.println("Query: " + searchQuery);
+
 
 		try {
 			// connect to DB
 			currentCon = ConnectionManager.getConnection();
 			stmt = currentCon.createStatement();
 			rs = stmt.executeQuery(searchQuery);
+			// "System.out.println" prints in the console; Normally used to trace
+			// the process
+			System.out.println("Your user name is " + username);
+			System.out.println("Your password is " + password);
+			System.out.println("Query: " + searchQuery);
 			boolean more = rs.next();
 
 			// if user does not exist set the isValid variable to false

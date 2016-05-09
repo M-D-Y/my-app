@@ -1,9 +1,5 @@
 package ru.mdy.login_example.servlets;
 
-import java.util.Enumeration;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -88,8 +84,9 @@ public class LoginServlet extends HttpServlet {
 
 	protected void dispatch(HttpServletRequest request, HttpServletResponse response, String page)
 			throws javax.servlet.ServletException, java.io.IOException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-		dispatcher.forward(request, response);
+//		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
+//		dispatcher.forward(request, response);
+		request.getRequestDispatcher(page).forward(request, response);
 	}
 
 }
