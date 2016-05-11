@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=windows-1251"
+<%@page language="java" contentType="text/html; charset=windows-1251"
 	pageEncoding="windows-1251"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <jsp:useBean id="user" class="ru.mdy.login_example.beans.UserBean" scope="session" />
 
