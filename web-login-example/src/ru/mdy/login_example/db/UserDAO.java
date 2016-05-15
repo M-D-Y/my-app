@@ -1,8 +1,10 @@
 package ru.mdy.login_example.db;
 
-import ru.mdy.login_example.beans.UserBean;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
-import java.sql.*;
+import ru.mdy.login_example.beans.UserBean;
 
 public class UserDAO {
 	static Connection currentCon = null;
@@ -35,7 +37,7 @@ public class UserDAO {
 			// if user does not exist set the isValid variable to false
 			if (!more) {
 				System.out.println("Sorry, you are not a registered user! Please sign up first");
-				bean.setValid(false);
+				bean.setLogged(false);
 			}
 
 			// if user exists set the isValid variable to true
@@ -46,7 +48,7 @@ public class UserDAO {
 				System.out.println("Welcome " + firstName);
 				bean.setFirstName(firstName);
 				bean.setLastName(lastName);
-				bean.setValid(true);
+				bean.setLogged(true);
 			}
 		} catch (Exception ex) {
 			System.out.println("Log In failed: An Exception has occurred! " + ex + "\ncause: ");

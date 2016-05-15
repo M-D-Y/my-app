@@ -2,23 +2,27 @@ package ru.mdy.login_example.db;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.*;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
 public class ConnectionManager {
 
 	static Connection con;
 	static String url;
 	/*
-	 * Where to place and how to read configuration resource files in servlet based application?
-	 * http://stackoverflow.com/questions/2161054/where-to-place-and-how-to-read-configuration-resource-files-in-servlet-based-app/2161583#2161583
+	 * Where to place and how to read configuration resource files in servlet
+	 * based application?
+	 * http://stackoverflow.com/questions/2161054/where-to-place-and-how-to-read
+	 * -configuration-resource-files-in-servlet-based-app/2161583#2161583
 	 */
-		
+
 	public static Properties getDataBaseProperties(String propertyFile) {
 		InputStream in = null;
 		Properties properties = new Properties();
 		try {
-			//in = Thread.class.getResourceAsStream(propertyFile);
+			// in = Thread.class.getResourceAsStream(propertyFile);
 			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 			in = classLoader.getResourceAsStream(propertyFile);
 			properties.load(in);
@@ -39,12 +43,15 @@ public class ConnectionManager {
 		final String propertiesFile = "jdbc.properties";
 		Properties connectionProperties = getDataBaseProperties(propertiesFile);
 		Connection connection = null;
-		if (connectionProperties.isEmpty() && connectionProperties.size()==0){
+		if (connectionProperties.isEmpty() && connectionProperties.size() == 0) {
 			throw new Exception("Error loading jdbc properties file: " + propertiesFile);
 		}
-		String driver = connectionProperties.getProperty("jdbc.driver");
-		if (driver != null)
-			//System.setProperty("jdbc.drivers", driver);
+		String driverName = connectionProperties.getProperty("jdbc.driver");
+
+		if (driverName != null) {
+			System.setProperty("jdbc.drivers", driverName);
+			Class.forName(driverName);
+		}
 		try {
 			connection = DriverManager.getConnection(connectionProperties.getProperty("jdbc.url"),
 					connectionProperties.getProperty("jdbc.username"),

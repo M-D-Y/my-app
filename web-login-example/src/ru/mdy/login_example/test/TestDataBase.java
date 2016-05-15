@@ -15,7 +15,7 @@ public class TestDataBase extends TestCase {
 		bean.setUserName("login_example");
 		bean.setPassword("login_example");
 		bean = UserDAO.login(bean);
-		assertEquals(true, bean.isValid());
+		assertEquals(true, bean.isLogged());
 	}
 
 }

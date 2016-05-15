@@ -6,11 +6,27 @@ public class UserBean {
     private String password;
     private String firstName;
     private String lastName;
-    public boolean valid;
+    private boolean logged;
+    private String action;
  
 	
 	
-    public String getFirstName() {
+
+	/**
+	 * @return the logged
+	 */
+	public boolean isLogged() {
+		return logged;
+	}
+
+	/**
+	 * @param logged the logged to set
+	 */
+	public void setLogged(boolean logged) {
+		this.logged = logged;
+	}
+
+	public String getFirstName() {
        return firstName;
 	}
 
@@ -45,12 +61,18 @@ public class UserBean {
        username = newUsername;
 			}
 
-				
-    public boolean isValid() {
-       return valid;
+	/**
+	 * @return the action
+	 */
+	public String getAction() {
+		return action;
 	}
 
-    public void setValid(boolean newValid) {
-       valid = newValid;
-	}	
+	/**
+	 * @param action the action to set
+	 */
+	public void setAction(String action) {
+		this.action = action;
+	}
+
 }

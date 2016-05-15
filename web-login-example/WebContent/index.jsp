@@ -1,18 +1,40 @@
+<%@page language="java" contentType="text/html; charset=windows-1251"
+	pageEncoding="windows-1251"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
-<META
-http-equiv="refresh" content="5; URL=login.jsp">
+<style type="text/css">
+h1 {
+	color: #000099
+}
+
+table {
+	width: 100%;
+	border: 1px;
+}
+
+</style>
 </head>
+<!-- http://html5book.ru/css-colors/ -->
 <body>
-<h2>Hello World!</h2>
-
-You will be redirected to login page automatically in 5 seconds.
-<a href="login.jsp">Or your can do it manually...</a>
-
-<!--  
-< %
- request.getRequestDispatcher("login.jsp").forward(request, response); 
- / >
- -->
+	<table>
+		<tr>
+			<td colspan="2" bgcolor="maroon" align="center">
+			<%@include file="WEB-INF/include/header.jsp"%>	</td>
+		</tr>
+		<tr>
+			<td width="30%" valign="top" bgcolor="gray" align="center">
+			<%@include file="WEB-INF//include/leftmenu.jsp"%>	</td>
+			<td width="70%" valign="top">
+			<jsp:include page="WEB-INF//include/main.jsp" flush="true"/> 
+			
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" bgcolor="silver" align="center"> <%@include
+					file="WEB-INF//include/footer.jsp"%>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
