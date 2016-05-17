@@ -20,19 +20,19 @@ table {
 	<table>
 		<tr>
 			<td colspan="2" bgcolor="maroon" align="center">
-			<%@include file="WEB-INF/include/header.jsp"%>	</td>
+			<%@include file="include/header.jsp"%>	</td>
 		</tr>
 		<tr>
 			<td width="30%" valign="top" bgcolor="gray" align="center">
-			<%@include file="WEB-INF//include/leftmenu.jsp"%>	</td>
+			<%@include file="include/leftmenu.jsp"%>	</td>
 			<td width="70%" valign="top">
-			<jsp:include page="WEB-INF//include/main.jsp" flush="true"/> 
+			<jsp:include page="include/main.jsp" flush="true"/> 
 			
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" bgcolor="silver" align="center"> <%@include
-					file="WEB-INF//include/footer.jsp"%>
+					file="include/footer.jsp"%>
 			</td>
 		</tr>
 	</table>
