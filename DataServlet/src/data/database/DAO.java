@@ -5,8 +5,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
+
+import data.beans.BeanFactory;
+import data.beans.MessageBean;
 
 public class DAO {
 	private static Connection connection = null;
@@ -15,8 +17,8 @@ public class DAO {
 		if (connection != null)
 			return connection;
 		// Устанавливаем соединение с БД
-		// String connectionURL = "jdbc:postgresql://localhost:5432/postgres";
-		String connectionURL = "jdbc:postgresql://vs362.imb.ru:5432/postgres";
+		String connectionURL = "jdbc:postgresql://localhost:5432/postgres";
+		//String connectionURL = "jdbc:postgresql://vs362.imb.ru:5432/postgres";
 		// Загружаем драйвер БД
 		try {
 			Class.forName("org.postgresql.Driver");
@@ -32,7 +34,7 @@ public class DAO {
 		return connection;
 	}
 
-	private static ResultSet executeQuery(String sql) {
+	private static BeanFactory executeQuery(String sql, BeanFactory factory) {
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
@@ -40,44 +42,24 @@ public class DAO {
 			statement = getConnection().createStatement();
 			statement.executeQuery(sql);
 			resultSet = statement.getResultSet();
-			// rs.close();
+			factory.add(resultSet);
+			resultSet.close();
 			statement.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return resultSet;
+		return factory;
 
 	}
 
-	private static List<String> transformToArrayListAndClose(ResultSet resultSet) {
-		List data = new ArrayList();
-		try {
-			while (resultSet.next()) {
-				// Сохраняем всё в список
-				data.add(resultSet.getString("id"));
-				data.add(resultSet.getString("message"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (resultSet != null)
-					resultSet.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		return data;
+
+	public static List<MessageBean> getAllMessages() {
+		BeanFactory result = executeQuery("select * from message", new BeanFactory(MessageBean.class));
+		return (List<MessageBean>) result.getList();
 	}
 
-	public static List<String> getAllRecords() {
-		ResultSet resultSet = executeQuery("select * from message");
-		return transformToArrayListAndClose(resultSet);
-	}
-
-	public static List<String> getMessageRecordByID(String id) {
-		ResultSet resultSet = executeQuery("select * from message where id = " + id);
-		return transformToArrayListAndClose(resultSet);
+	public static List<MessageBean> getMessageRecordByID(String id) {
+		BeanFactory result = executeQuery("select * from message where id = " + id, new BeanFactory(MessageBean.class));
+		return (List<MessageBean>) result.getList();
 	}
 }

@@ -2,11 +2,6 @@ package data.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import data.beans.MessageBean;
 import data.database.DAO;
 
 @WebServlet({ "/", "/DataServlet" })
@@ -35,7 +31,7 @@ public class DataServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 
-		List<String> data = DAO.getAllRecords();
+		List<MessageBean> data = DAO.getAllMessages();
 		request.setAttribute("data", data);
 		// Переходим на JSP страницу
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
