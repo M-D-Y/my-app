@@ -76,7 +76,7 @@ public class DAO {
 		return transformToArrayListAndClose(resultSet);
 	}
 
-	public static List<String> getRecordByID(String id) {
+	public static List<String> getMessageRecordByID(String id) {
 		ResultSet resultSet = executeQuery("select * from message where id = " + id);
 		return transformToArrayListAndClose(resultSet);
 	}
