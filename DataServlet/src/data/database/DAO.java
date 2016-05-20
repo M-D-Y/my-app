@@ -17,8 +17,8 @@ public class DAO {
 		if (connection != null)
 			return connection;
 		// Устанавливаем соединение с БД
-		String connectionURL = "jdbc:postgresql://localhost:5432/postgres";
-		//String connectionURL = "jdbc:postgresql://vs362.imb.ru:5432/postgres";
+		//String connectionURL = "jdbc:postgresql://localhost:5432/postgres";
+		String connectionURL = "jdbc:postgresql://vs362.imb.ru:5432/postgres";
 		// Загружаем драйвер БД
 		try {
 			Class.forName("org.postgresql.Driver");

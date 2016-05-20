@@ -14,11 +14,11 @@ import java.util.List;
  * @since 19 мая 2016 г.
  */
 public class BeanFactory {
-	private List<?> beanList;
-	private Class beanClass;
+	private List<TransferBean> beanList;
+	private Class<TransferBean> beanClass;
 
 	public <clazz> BeanFactory(Class clazz) {
-		this.beanList = new ArrayList<clazz>();
+		this.beanList = (List<TransferBean>) new ArrayList<clazz>();
 		beanClass = clazz;
 	}
 
@@ -33,20 +33,15 @@ public class BeanFactory {
 
 			while (resultSet.next()) {
 				// Сохраняем всё в Bean
-
+				TransferBean bean =  (TransferBean) beanClass.newInstance();
+				beanList.add(bean);
 				for (int i = 1; i <= meta.getColumnCount(); i++) {
-					String column = meta.getColumnName(i);
-					try {
-						TransferBean bean =  (TransferBean) beanClass.newInstance();
+						String column = meta.getColumnName(i);
 						bean.setProperty(column, resultSet.getString(column));
-					} catch (InstantiationException | IllegalAccessException e) {
-						e.printStackTrace();
-					}
-
 				}
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		} catch (SQLException | InstantiationException | IllegalAccessException e) {
+			e.printStackTrace();
 		}
 
 	}
