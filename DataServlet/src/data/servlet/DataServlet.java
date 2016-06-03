@@ -17,7 +17,7 @@ import data.beans.UserSessionBean;
 import data.database.DAO;
 
 //@WebServlet({ "/DataServlet" })
- @WebServlet("/controller")
+ @WebServlet("/")
 public class DataServlet extends HttpServlet {
 	private ServletConfig config;
 	// Это наша JSP страница
